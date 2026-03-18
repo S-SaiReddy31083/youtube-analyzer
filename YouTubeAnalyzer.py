@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 data = {
     "Video":["Pandas Tutorial","Numpy Tutorial","Matplotlib Tutorial","Pandas Projects","Scikit-learn Tutorial"],
@@ -48,7 +49,7 @@ print(df.groupby("Upload Day")["Views"].mean())
 df_com = df.sort_values(["Comments"],ascending=False)
 print(df_com)
 
-#Finding the videos with highest watch time
+#Finding the videos with highest watch time  
 df_time = df.sort_values(["Watch Time"], ascending=False)
 print(df_time)
 
@@ -68,6 +69,21 @@ plt.xlabel("Engagement Rate")
 plt.ylabel("Views")
 plt.legend(["Engagement Rate vs Views"])
 plt.title("Engagement Rates vs Views")
+plt.show()
+
+#Creating Scatter plot for Likes and Comments using the Seaborn
+sns.scatterplot(x="Likes",y="Comments",data=df,hue="Category",s=100)
+plt.xlabel("Likes")
+plt.ylabel("Comments")
+plt.title("Likes vs Comments")
+plt.legend(title="Category")
+plt.show()
+
+#Creating Histogram for Views using the seaborn
+sns.histplot(df["Views"],bins=5,color='Orange',edgecolor="black")
+plt.xlabel("Views")
+plt.ylabel("Frequency")
+plt.title("Distribution of Views")
 plt.show()
 
 
