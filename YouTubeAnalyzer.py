@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sklearn
 
 data = {
     "Video":["Pandas Tutorial","Numpy Tutorial","Matplotlib Tutorial","Pandas Projects","Scikit-learn Tutorial"],
@@ -85,6 +86,23 @@ plt.xlabel("Views")
 plt.ylabel("Frequency")
 plt.title("Distribution of Views")
 plt.show()
+
+#Predicting the Views Using the Linear Regression Model
+from sklearn.linear_model import LinearRegression
+x = df[["Likes"]]
+y = df["Views"]
+model = LinearRegression()
+model.fit(x,y)
+predicted_views = model.predict(x)
+print(predicted_views)
+
+#Creating a Scatter plot for Likes and Views with the Predicted views
+plt.scatter(df["Likes"],df["Views"],color="green",edgecolors="black")
+plt.xlabel("Likes")
+plt.ylabel("Views")
+plt.title("Likes vs Views with Predicted Views")
+plt.show()
+
 
 
 
