@@ -103,6 +103,30 @@ plt.ylabel("Views")
 plt.title("Likes vs Views with Predicted Views")
 plt.show()
 
+#Implementing the Confussion Matrix for the Category Prediction
+from sklearn.metrics import confusion_matrix
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df["Category_encoder"] = le.fit_transform(df["Category"])
+x = df[["Likes","Views"]]
+y = df["Category_encoder"]
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=42)
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(x_train,y_train)
+y_pred = model.predict(x_test)
+cm = confusion_matrix(y_test,y_pred)
+print("Confusion Matrix: ",cm)
+
+#Graph for confusion matrix
+sns.heatmap(cm, annot=True, fmt="d",cmap="Blues")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix for Category Prediction")
+plt.show()
+
+
 
 
 
