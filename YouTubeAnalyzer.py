@@ -119,10 +119,10 @@ y_pred = model.predict(x_test)
 cm = confusion_matrix(y_test,y_pred)
 print("Confusion Matrix: ",cm)
 
-#Graph for confusion matrix
+#Graph for confusion matrix using the Seaborn Library
 sns.heatmap(cm, annot=True, fmt="d",cmap="Blues")
-plt.xlabel("Predicted")
-plt.ylabel("Actual")
+plt.xlabel("Predicted Values")
+plt.ylabel("Actual Values")
 plt.title("Confusion Matrix for Category Prediction")
 plt.show()
 
